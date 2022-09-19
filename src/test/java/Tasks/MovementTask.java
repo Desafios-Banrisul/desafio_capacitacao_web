@@ -3,9 +3,7 @@ package Tasks;
 import Enun.Menu;
 import Enun.TypeAccount;
 import Enun.TypeMovement;
-import Framework.Utils.CreateFolder;
-import Framework.Utils.FakersGeneration;
-import Framework.Utils.User;
+import Framework.Utils.*;
 import PageObjects.MovementPage;
 import PageObjects.GenericPage;
 import PageObjects.MenuPage;
@@ -29,16 +27,21 @@ public class MovementTask {
         genericPage = new GenericPage(driver);
     }
 
-    public void registrationNewMovement(User user, TypeMovement type, TypeAccount typeAccount){
-        CreateFolder.Movement movement = new CreateFolder.Movement();
+    public void registrationNewMovement(Account account, TypeMovement type){
+       Movement movement = new Movement();
         movement.setType(type.toString());
         movement.setTransactionDate(fakersGeneration.getTransactionDate());
         movement.setPaymentDate(fakersGeneration.getPaymentDate());
         movement.setDescription(fakersGeneration.getDescription());
         movement.setInterested(fakersGeneration.getInterested());
         movement.setValue(String.valueOf(fakersGeneration.getValue()));
-        movement.setAccountSelect(typeAccount.toString());
-        user.getListMovement().add(movement);
+        movement.setAccountSelect(account.getName());
+        System.out.print(movement.getValue() + " ");
+        System.out.print(movement.getType() + " ");
+        System.out.println(movement.getAccountSelect());
+
+        movement.setAccountSelect(account.getName());
+        account.getMovement().add(movement);
 
         headerPage.getMenuByIndex(Menu.CREATE_MOVEMENT).click();
         createMovementValidation.validationCreateMovementPage();
@@ -52,5 +55,6 @@ public class MovementTask {
         createMovementPage.getStatusPagoRadio().click();
         genericPage.getSubmitButton().click();
         createMovementValidation.validationMessageRegistrationNewMovement();
+        account.setBalance(movement);
     }
 }

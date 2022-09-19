@@ -1,11 +1,11 @@
 package TestCases;
 
-import Enun.TypeAccount;
 import Enun.TypeMovement;
 import Framework.Report.Report;
 import Framework.Report.ReportType;
 import Framework.Report.Screenshot;
 import Framework.TestBase;
+import Framework.Utils.Account;
 import Framework.Utils.User;
 import Tasks.AccountTask;
 import Tasks.HomeTask;
@@ -29,12 +29,18 @@ public class ValidarSaldo extends TestBase {
         try {
             Report.creatTest("Validando saldo conforme a movimentação criada com sucesso", ReportType.SINGLE);
             User user = loginTask.creatUser();
+
             loginTask.registrationNewUser(user);
             loginTask.login(user);
-            accountTask.registrationNewAccount(user, "Receitas");
-            accountTask.registrationNewAccount(user, "Despesas");
-            movementTask.registrationNewMovement(user, TypeMovement.RECEITA, TypeAccount.RECEITA);
-            movementTask.registrationNewMovement(user, TypeMovement.RECEITA, TypeAccount.DESPESA);
+
+            Account receitas =  accountTask.registrationNewAccount(user, "Receitas");
+            Account despesas =  accountTask.registrationNewAccount(user, "Despesas");
+
+            movementTask.registrationNewMovement(receitas, TypeMovement.RECEITA);
+
+            movementTask.registrationNewMovement(despesas, TypeMovement.RECEITA);
+            movementTask.registrationNewMovement(despesas, TypeMovement.DESPESA);
+
             homeTask.validationSaldo(user);
         }catch (Exception e){
             Report.log(Status.FAIL, e.getMessage(), Screenshot.captureBase64(driver));

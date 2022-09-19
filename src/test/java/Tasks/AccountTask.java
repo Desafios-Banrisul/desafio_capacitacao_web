@@ -24,10 +24,9 @@ public class AccountTask {
         menuPage = new MenuPage(driver);
     }
 
-    public void registrationNewAccount(User user, String name){
+    public Account registrationNewAccount(User user, String name){
         Account account = new Account();
         account.setName(name);
-        user.getListAccount().add(account);
 
         menuPage.getMenuByIndex(Menu.ACCOUNT).click();
         menuPage.getMenuSubItenAddAccount().click();
@@ -35,5 +34,9 @@ public class AccountTask {
         addAccountPage.getNameTextField().sendKeys(name);
         genericPage.getSubmitButton().click();
         accountValidation.validationMessageRegistrationNewAccount();
+
+        user.getListAccount().add(account);
+
+        return account;
     }
 }

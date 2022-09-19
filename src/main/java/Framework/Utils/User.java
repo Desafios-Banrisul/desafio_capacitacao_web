@@ -7,11 +7,9 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private List<CreateFolder.Movement> listMovement;
     private List<Account> listAccounts;
 
     public User(){
-        listMovement = new ArrayList<>();
         listAccounts = new ArrayList<>();
     }
 
@@ -37,14 +35,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<CreateFolder.Movement> getListMovement() {
-        return listMovement;
-    }
-
-    public void setListMovement(List<CreateFolder.Movement> listMovement) {
-        this.listMovement = listMovement;
     }
 
     public List<Account> getListAccount() {

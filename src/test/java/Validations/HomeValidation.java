@@ -34,9 +34,9 @@ public class HomeValidation {
     public void validationSaldoMovement(User user){
         try {
             waits.loadElement(homePage.getSaldoDespesa());
-            Assertions.assertEquals(user.getListMovement().get(1).getValue(), homePage.getSaldoDespesa().getText(), "Valor esta diferente despesa");
-            Assertions.assertEquals(user.getListMovement().get(2).getValue(), homePage.getSaldoReceita().getText(), "Valor esta diferente receita");
-            Report.log(Status.PASS, "Acessou a página home com sucesso", Screenshot.captureBase64(driver));
+            Assertions.assertEquals(String.valueOf(user.getListAccount().get(0).getSaldotruncado()).replace(",", "."), homePage.getSaldoReceita().getText(), "Valor esta diferente conta receitas");
+            Assertions.assertEquals(String.valueOf(user.getListAccount().get(1).getSaldotruncado()).replace(",", "."), homePage.getSaldoDespesa().getText(), "Valor esta diferente conta despesas");
+            Report.log(Status.PASS, "Saldo das contas validado com sucesso", Screenshot.captureBase64(driver));
 
         }catch (Exception e){
             Report.log(Status.FAIL, e.getMessage(), Screenshot.captureBase64(driver));
