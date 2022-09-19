@@ -36,10 +36,6 @@ public class MovementTask {
         movement.setInterested(fakersGeneration.getInterested());
         movement.setValue(String.valueOf(fakersGeneration.getValue()));
         movement.setAccountSelect(account.getName());
-        System.out.print(movement.getValue() + " ");
-        System.out.print(movement.getType() + " ");
-        System.out.println(movement.getAccountSelect());
-
         movement.setAccountSelect(account.getName());
         account.getMovement().add(movement);
 
