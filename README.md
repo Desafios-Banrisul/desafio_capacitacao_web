@@ -48,7 +48,7 @@ Este projeto conta com as seguintes tecnologias:
 * Faça clone do projeto na sua máquina, para isso utilize o comando abaixo
 
 ```
-git clone git@gitlab.dbserver.com.br:eduarda.keller/desafio_capacitacao_web.git
+git clone https://github.com/Desafios-Banrisul/desafio_capacitacao_web.git
 ```
 Em seguida, abra o projeto desafio_capacitacao_web na IDEA de sua preferência
 - Navegue até a pasta src/test/java/TestsSuites
